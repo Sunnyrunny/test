@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+      background-image: url();
+      background-repeat: no-repeat;
+      background-size: 100%;
+}
+#one{
+    position: absolute;
+    left: 155px;
+    font-size: 20px;
+    color:purple;
+    
+}
+#two{
+   position: absolute;
+  left: 1050px;
+  top: 530px;
+
+}
+ a{
+    text-decoration: none; 
+    color:purple;
+    font-weight: 900;
+
+}
+#mid{
+
+    width: 100%;
+   
+}
+#ban{
+   position: absolute;
+   left: 450px;
+   top:60px;
+   width: 400px;
+    border: 0.1rem solid purple; 
+    padding: 10px ;
+    border-radius: 10%;
+   
+    
+}
+input{
+    margin-top: 30px;
+    margin-left:30px;
+    padding: 5px;
+    height: 30px;
+    width: 70%;
+    border-radius: 10%;
+}
+/* #huoqu{
+    width: 80px;
+    height: 42px;
+    background-color:purple;
+    color: white;
+    margin-left:-10px;
+} 
+#yanzheng{
+    width: 200px;
+} */
+#canvas{
+    margin-top: 27px;
+    margin-left: 30px;
+}
+#text{
+  position: relative;
+  top: -14px;
+    margin-left: 4px;
+    width: 145px;
+}
+#bt{
+    width: 40px;
+    height: 25px;
+    background-color:purple;
+    color: white;
+    font-size: 13px;
+    margin-left:0px;
+  
+} 
+.check{
+    width: 100px;
+    height: 15px;
+    margin-left: -10px;
+}
+#check{
+    font-size: 12px;
+   margin-left:-25px;
+}
+#zhuce{
+    height: 40px;
+    margin-bottom: 15px;
+    background-color:rgba(128, 0, 128);
+    color: white;
+}
+#userText,#pwdText,#YxText,#YzText{
+    color: brown;
+    font-weight: 900;
+    font-size: 12px;
+}

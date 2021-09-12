@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改密码</title>
+    <style>
+        body {
+            background-image: url(img/image.biaobaiju-1.jpeg);
+            background-size: 100%;
+            overflow: hidden;
+        }
+
+        /*  
+        .row{
+
+            
+            margin-left: 400px;
+           vertical-align: center;
+            padding: 30px;
+            margin-top: 200px;
+        } */
+        ul {
+            width: 300px;
+            list-style: none;
+
+            padding: 30px;
+
+        }
+
+        input {
+            width: 200px;
+            padding: 5px;
+            border-radius: 10%;
+            height: 30px;
+            border: steelblue 1px solid;
+        }
+
+        button {
+            height: 30px;
+            width: 70px;
+            background-color: steelblue;
+            color: white;
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+
+        #user {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class='xform-ul'>
+        <h4>修改密码</h4>
+        <li>
+            <div class='form-label'>旧的密码 :</div>
+
+            <input type='password' id="oldpassword" name="oldpassword" />
+            <div style="display: inline" id="tip1"></div>
+
+        </li>
+        <li>
+            <div class='form-label'>新的密码 :</div>
+
+            <input type='password' id="password1" name="password1" placeholder="length must be 6-18" />
+            <div style="display: inline" id="tip2"></div>
+
+        </li>
+        <li>
+            <div class='form-label'>确认密码 :</div>
+
+            <input type='password' id="password2" name="password2" placeholder="must match with the first" />
+            <div style="display: inline" id="tip3"> </div>
+
+        </li>
+        <li class="text-center">
+            <div class="btn-submit">
+                <div id="btn"><button>Modify</button></div>
+            </div>
+        </li>
+        <li class="text-center">
+            <div id="tip4"></div>
+        </li>
+    </ul>
+    <div id="user">
+        <h4>修改用户名</h4>
+        <input type="text" placeholder="昵称" id="username"><br>
+        <button id="modifybtn">modify</button>
+    </div>
+    <div></div>
+    <script>
+
+        $(document).ready(function () {
+            $("#oldpassword").blur(function () {
+                var param = $("#oldpassword").val();
+                $.ajax({
+                    url: "",
+                    data: { oldpassword: param },
+                    success: function (e) {
+                        if (e.code == 1) {
+                            $("#tip1").html("<font color=\"green\" size=\"2\">  Correct</font>");
+                        }
+                        else {
+                            $("#tip1").html("<font color=\"red\" size=\"2\">  Wrong</font>");
+                        }
+                    }
+                });
+            });
+            $("#password1").blur(function () {
+                var num = $("#password1").val().length;
+                if (num < 6) {
+                    $("#tip2").html("<font color=\"red\" size=\"2\">  too short</font>");
+                }
+                else if (num > 18) {
+                    $("#tip2").html("<font color=\"red\" size=\"2\">  too long</font>");
+                }
+                else {
+                    $("#tip2").html("<font color=\"green\" size=\"2\"> Accept</font>");
+                }
+            });
+            $("#password2").blur(function () {
+                var tmp = $("#password1").val();
+                var num = $("#password2").val().length;
+                if ($("#password2").val() != tmp) {
+                    $("#tip3").html("<font color=\"red\" size=\"2\">  Wrong</font>");
+                }
+                else {
+                    if (num >= 6 && num <= 18) {
+                        $("#tip3").html("<font color=\"green\" size=\"2\">  Correct</font>");
+                    }
+                    else {
+                        $("#tip3").html("<font color=\"red\" size=\"2\">  invalid</font>");
+                    }
+                }
+            });
+            $("#btn").click(function () {
+                var flag = true;
+                var old = $("#oldpassword").val();
+                var pass = $("#password1").val();
+                var pass2 = $("#password2").val();
+                var num1 = $("#password1").val().length;
+                var num2 = $("#password2").val().length;
+                if (num1 != num2 || num1 < 6 || num2 < 6 || num1 > 18 || num2 > 18 || pass != pass2) {
+                    flag = false;
+                }
+                else {
+                    flag = true;
+                }
+                if (flag) {
+                    $.ajax({
+                        url: "",
+                        data: {
+                            oldpassword: old,
+                            password: pass
+                        },
+                        success: function (e) {
+                            if (e.code == 1) {
+                                $("#tip4").show().html("<font color=\"green\" size=\"3\">  Edit Success!</font>");
+                                $("#oldpassword").val("");
+                                $("#password1").val("");
+                                $("#password2").val("");
+                                $("#tip1").empty();
+                                $("#tip2").empty();
+                                $("#tip3").empty();
+                                $("#tip4").delay(2000).hide(0);
+                            }
+                            else {
+                                $("#tip4").show().html("<font color=\"red\" size=\"3\">  OldPassword is Wrong!</font>");
+                            }
+                        }
+                    });
+                }
+                else {
+
+                    $("#tip4").show().html("<font color=\"red\" size=\"3\">  Please follow the tips!</font>");
+                }
+            });
+        });
+        $("#modifybtn").bind("click", function () {
+            $.ajax({
+                url: "/ChangeUserNameServlet",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json;charset=UTF-8",//防止乱码 
+                data: {
+                    username: $("#username").val(),
+
+                },
+                success: function (data) {
+
+
+                    layer.msg("修改成功", function () { window.location.href = "own.html?" + $("#username").val() + ""; })
+
+
+                    //跳转到主页 
+
+                }
+            });
+        });
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+</body>
+
+</html> 

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #header {
+            background-image: url(img/2021071671banner.jpg);
+            width: 100%;
+            background-size: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        body {
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            margin-left: 20px;
+            overflow: hidden;
+        }
+
+        #one {
+            position: relative;
+            left: 110px;
+            top: -60px;
+            font-size: 18px;
+            color: rgb(176, 206, 230);
+            clear: both;
+            overflow: hidden;
+        }
+
+        #table {
+            border: solid 1px rgba(70, 131, 180, 0.527);
+            width: 1200px;
+            height: 100px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="nav">
+        <img src="img/新闻资讯.png" width="100px">
+
+
+        <div id="one">
+            <span>新闻管理</span>
+            <br>
+            <span id="time"></span>
+        </div>
+        <div id="header1" style="text-align: center;">
+            <input type="button" class="search" value="查找" onclick="search()"
+                style="background: rgba(70, 131, 180, 0.644);" />
+            <input type="button" class="add" value="添加" onclick="addLine()"
+                style="background: rgba(70, 131, 180, 0.644);" />
+        </div>
+
+        <table id="table" border="1" cellspacing="0" cellpadding="1px">
+            <tr id="title">
+                <td class="item-title" width="200px">新闻编号</td>
+                <td class="item-content" width="600px">新闻标题</td>
+                <td class="item-content" width="200px">发布时间</td>
+                <td width="200px">操作</td>
+            </tr>
+            <!--每个条目-->
+            <tr class="item" id="container">
+                <td class="item-title" width="200px" id="id">新闻编号</td>
+                <td class="item-content" width="600px" id="title">新闻标题</td>
+                <td class="item-content" width="200px" id="time">发布时间</td>
+                <td><a href="javascript:;" id="del" onclick="del(this);return false">删除</a>
+                    <a href="javascript:;" id="change"onclick="change(this);return false">修改</a>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <script>
+           /*  时间 */
+            Date.prototype.format = function (fmt) {
+                var o = {
+                    "M+": this.getMonth() + 1,                 //月份 
+                    "d+": this.getDate(),                    //日 
+                    "h+": this.getHours(),                   //小时 
+                    "m+": this.getMinutes(),                 //分 
+                    "s+": this.getSeconds(),                 //秒 
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                    "S": this.getMilliseconds()             //毫秒 
+                };
+                if (/(y+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                }
+                for (var k in o) {
+                    if (new RegExp("(" + k + ")").test(fmt)) {
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                    }
+                }
+                return fmt;
+            }
+            var time = document.getElementById("time");
+            var time1 = new Date().format("yyyy-MM-dd hh:mm:ss");
+            //window.alert(time1);
+            time.innerHTML = time1;
+
+
+          /*  传来新闻 */
+
+            $.ajax({
+                //请求方式
+                type: 'get',
+                //发送请求的地址
+                //我这里的地址是不需要传数据的，所以没有拼接参数
+                url: 'https://api.myjson.com/bins/73fno',
+
+                //服务器返回的数据类型
+                dataType: 'json',
+
+                //请求成功的处理
+                success: function (data) {
+                    console.log(data)
+                    //获取需要的数据
+                    var group = data.content;
+
+                    //拼接字符串
+                    var str = '';
+                    //对数据做遍历，拼接到页面显示
+                    for (var i = 0; i < group.length; i++) {
+                        str +=
+                            '<td class="item-title">' + group[i].id + '</td>' +
+                            '<td class="item-content">' + group[i].title + '</td>' +
+                            '<td class="item-content">' + group[i].time + '</td>'
+
+
+                    }
+                    //放入页面的容器显示
+                    $('#container').html(str);
+
+                },
+                //请求失败的处理
+                error: function (jqXHR) {
+                    console.log(jqXHR);
+                }
+            });
+
+          /*   增 */
+          $(".add").bind("click",function(){
+            $.ajax({
+                url: '',
+                type: 'POST',
+                data: {
+                    "id": $("#id").val(),
+                    "title": $("#title").val(),
+                    "time": $("#time").val()
+                },
+                success: function (data) {
+                    console.log('添加success');
+                }.bind(this),
+                error: function (xhr, status, err) {
+                }.bind(this)
+            });
+          });
+            /*  修改 */
+            $("#change").bind("click",function(){
+            $.ajax({
+                url: "",
+                type: "PUT",
+                dataType: "json",
+                data: {
+                    "id": $("#id").val(),
+                    "title": $("#title").val(),
+                    "time": $("#time").val()
+                },
+                success: function (data) {
+                    console.log('修改成功');
+                }.bind(this),
+                error: function (xhr, status, err) {
+                }.bind(this)
+            });
+        });
+            /* 删除 */
+            $("#del").bind("click",function(){
+            $.ajax({
+                url: "",
+                type: "DELETE",
+                dataType: "json",
+                data: {
+                    "id": $("#id").val(),
+                    "title": $("#title").val(),
+                    "time": $("#time").val()
+                },
+                success: function (data) {
+                    console.log('成功删除');
+                }.bind(this),
+                error: function (xhr, status, err) {
+                }.bind(this)
+            });
+        });
+        </script>
+
+
+
+
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+        <script src="js/news.Manager.js"></script>
+
+</body>
+
+</html>

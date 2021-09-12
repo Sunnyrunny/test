@@ -1,0 +1,172 @@
+.clearfix::before, .clearfix::after{
+     content: '';
+      display: block;
+       clear: both;
+     }     
+input,button{ 
+    outline: none;
+    }
+html{
+      font-size: 8px;
+ }
+body{ 
+    font-size: 1.4rem;
+    background-image: url();
+ } 
+ a{ 
+     color:steelblue; 
+}
+   /*主体*/ 
+#content{
+    position: relative;
+    top: 20px;
+    width: 50rem; 
+    border: 0.1rem solid purple; 
+    margin: 5rem auto;
+    padding: 10px ;
+    border-radius: 10%;
+} 
+    /*头部*/ 
+ .content-header a{ 
+     height: 6rem;
+      width: 100%;
+     background-color: #ebebeb; 
+     color: #666666; 
+     display: inline-block;
+     float: left; 
+        /*水平居中*/ 
+     text-align: center; 
+        /*垂直居中*/
+     line-height: 6rem;
+     font-size: 1.8rem; 
+     text-decoration: none;
+
+} 
+ a.current{
+     background-color: transparent;
+      color: steelblue; 
+}
+
+/*内容*/
+.content-body{ 
+      padding: 4rem; 
+} 
+.dom{
+     width: 100%;
+    display: none;
+    padding: 10px 25px ;
+} 
+.s1{
+     /*background-color: red;*/ 
+     margin-bottom: 2rem;
+     
+}
+.s1 h4{ 
+    color:black;
+}
+ .s1 input{
+    width: 70%;  
+    height: 4rem;
+    margin-top: 10px;
+    border:1px solid #cccccc;
+    border-radius: 10%;
+    padding: 10px ;
+    
+       
+}
+.s2{
+     margin-bottom: 2rem; 
+     color: black;
+      font-size: 1.4rem;
+} 
+.btn{ 
+    width: 80%;
+     height: 3.5rem; 
+     border: none;
+    background-color:purple; 
+    color: white;
+     font-size: 1.8rem; 
+      margin-bottom: 2rem; 
+      text-align: center; 
+      line-height: 3.5rem;
+    border-radius: 10px;
+} 
+
+.btn1{
+    width: 40%;
+    height: 3.5rem; 
+    border: none;
+   background-color:steelblue; 
+   color: white;
+    font-size: 1.8rem; 
+     margin-bottom: 2rem; 
+     text-align: center; 
+     line-height: 3.5rem;
+   border-radius: 10px;
+   position: relative;
+   left: 80px;
+}
+.dom-footer{
+    margin-left: -60px;
+}
+.login-another{ 
+    color:black; 
+    margin-bottom: 2rem; 
+    text-align: center; 
+    line-height: 100%; 
+    
+}
+.login-another span{
+     margin: 0 0.5rem; 
+} 
+.login-three{ 
+    
+     text-align: center; 
+     line-height: 100%;
+      color: white; 
+      margin-top: 2rem; 
+     
+} 
+.login-three span{
+     margin-bottom: 2rem;
+      font-size: 1.2rem;
+       position: relative;
+      
+     } 
+     /*创建字体前的线条*/ 
+.login-three span::before{ 
+         content: ''; 
+         display: inline-block;
+          width: 12rem;
+           border: 1px solid #e0e0e0;
+            position: absolute; 
+            top:50%; 
+            left: -125%;
+} 
+/*创建字体后的线条*/
+.login-three span::after{ 
+     content: '';
+      display: inline-block;
+       width: 12rem;
+        border: 1px solid #e0e0e0;
+         position: absolute; 
+         top:50%; 
+         right: -125%;
+} 
+.login-three img{ 
+    margin-top: 2rem;
+     height: 3rem; 
+     width: 3rem; 
+     border-radius: 50%; 
+} 
+#userText,#pwdText,#repwdText,#phoneText{
+    color: brown;
+    font-weight: 900;
+}
+#h{
+    font-size: 18px;
+    text-align: center;
+    color: steelblue;
+
+}
+

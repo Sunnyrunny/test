@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="css/box.css">
+</head>
+
+<body>
+    <section id="content">
+    <!--头部-->
+    <div class="content-header clearfix">
+        <a href="javaScript:;" class="current"><span id="h">账&nbsp;&nbsp;号&nbsp;&nbsp;登&nbsp;&nbsp;录</span></a>
+    </div>
+    <div class="content-boby">
+        <div class="dom" style="display: block;">
+            <form id="loginForm" method="POST">
+                <div class="s1">
+                    <h4>账号</h4>
+                    <input type="text" autocomplete="off" name="username" id="username" placeholder="用户名/手机号/邮箱" onBlur="log-checkUser">
+               
+        </div>
+                
+                <div class="s1">
+                    <h4>密码</h4>
+                    <input type="password" autocomplete="off" name="password" id="password" placeholder="请输入密码" onBlur="log-checkPwd">
+                   
+                </div>
+                <div class="s2">
+                    <input type="radio" class="check" value="user">
+                    <span>以用户的身份登录</span>
+                    <input type="radio" class="check2" value="manager">
+                    <span>以管理员的身份登录</span>
+                </div>
+                <input type="button" id="loginBotton" value="登&nbsp;录" class="btn" onclick="log()" >
+
+            </form>
+            <div class="dom-footer">
+                <div class="login-another">
+                    <a href="#">找回密码</a>
+                    <span>|</span>
+                    <span>还没有注册账号</span>
+                    <a href="register.html">立即注册</a>
+                </div>
+                <div class="login-three">
+                    <span>第三方账号直接登录</span>
+                    <div class="login-icon">
+                        <a href="https://im.qq.com/">
+                            <img src="img/qq.png" width="40px">
+                        </a>
+                        <a href="https://weixin.qq.com/">
+                            <img src="img/微信.png"width="40px">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+  <script>
+      function log(){
+         var check=$("input[type='radio']:checked").val();
+         if(check=="manager"){
+            window.location.href="manager.html"
+         }
+        else if(check=="user"){
+            window.location.href="own.html"
+         }
+         else{
+             alert("未选择注册身份")
+         }
+      }
+$("#loginBotton").bind("click",function(){
+	 $.ajax({ 
+		 url:"/LoginServlet", 
+		 type:"POST", 
+		 dataType:"json", 
+		 contentType:"application/json;charset=UTF-8",//防止乱码 
+         data:{
+            username : $("#username").val(),
+            password: $("#password").val(),
+                       
+         },
+		 success:function(data){ 
+			 if(data == false){ 
+			    alert("用户不存在");
+			    loginform.username.focus();
+			    return false; 
+			}
+			else{ 
+				layer.msg("登录成功", function () { window.location.href = "index1.html?"+$("#username").val()+""; })
+
+
+				//跳转到主页 
+			}
+		 } 
+		}); 
+    });
+  </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+
+</body>
+
+</html>

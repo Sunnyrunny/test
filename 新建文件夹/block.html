@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>板块页面</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/pic.css">
+    <style>
+        #header {
+            background-image: url(img/2021071671banner.jpg);
+            width: 100%;
+            background-size: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        body {
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            margin-left: 20px;
+            overflow: hidden;
+        }
+
+        #one {
+            position: relative;
+            left: 110px;
+            top: -60px;
+            font-size: 18px;
+            color: rgb(176, 206, 230);
+            clear: both;
+            overflow: hidden;
+        }
+
+        #right {
+            position: absolute;
+            right: 160px;
+            top: 180px;
+            font-size: 16px;
+
+        }
+
+        #two {
+            position: relative;
+            left: 130px;
+            top: -41px;
+            margin: 10px;
+            padding: 10px;
+            width: 100px;
+            border-radius: 5px;
+            z-index: 1;
+
+        }
+
+        #two>ul {
+            display: none;
+        }
+
+        #two:hover>ul {
+            display: block;
+            margin-top: -10px;
+            background: #f9f9f9;
+        }
+
+        #two:hover>ul>li {
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        #two:hover>ul>li:hover {
+            background: white;
+        }
+
+        #two:hover>ul>li:hover>a {
+            color: red;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        #img {
+
+            position: relative;
+            top: -32px;
+            margin-left: 80px;
+        }
+
+        .bar6 {
+            position: absolute;
+            top: 170px;
+            left: 470px;
+        }
+
+        .bar6 input {
+            border: 2px solid #c5464a;
+            border-radius: 5px;
+            background: transparent;
+            top: 0;
+            right: 0;
+            height: 40px;
+            width: 250px;
+            text-decoration: none;
+        }
+
+        .bar6 #btn {
+            background: #a50b0b;
+            border-radius: 0 5px 5px 0;
+            width: 60px;
+            top: 0;
+            left: -5px;
+            height: 40px;
+            color: white;
+        }
+
+        .bar6 #btn:before {
+            content: "搜索";
+            font-size: 13px;
+            color: #F9F0DA;
+        }
+
+        #block {
+            margin-top: -20px;
+            height: 70px;
+            width: 100%;
+            background-color: #a50b0b;
+            padding: 10px;
+        }
+
+        #block li {
+            float: left;
+            margin: 20px;
+            color: white;
+            margin-left: 32px;
+
+        }
+        #list{
+            font-size: 12px;
+            background-color: whitesmoke;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="nav">
+        <img src="img/新闻资讯.png" width="100px">
+
+
+        <div id="one">
+            <span>知识分子的网上精神家园</span>
+            <br>
+            <span id="time"></span>
+        </div>
+       <!--  <div id="right">
+            <span>English | 设为首页 | </span>
+            <div id="two">
+                登录注册&nbsp;&nbsp;&nbsp;&nbsp;<span id="img"><img src="img/头像 (1).png" width="30px"></span>
+                <ul>
+                    <li><a href="register.html">以管理员身份</a></li>
+                    <li><a href="register2.html">用户身份</a></li>
+                </ul>
+            </div>
+        </div> -->
+        <div class="search bar6">
+            <form>
+                <input type="text" placeholder="夺冠2021" id="txt">
+                <input type="button" id="btn" value="搜&nbsp;索"  onclick="search()" >
+                <ul id="list">
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div id="block">
+        <ul>
+            <a href="">
+                <li>重要新闻</li>
+            </a>
+            <a href="">
+                <li>学习时评</li>
+            </a>
+            <a href="">
+                <li>综合新闻</li>
+            </a>
+            <a href="">
+                <li>中宣部发布</li>
+            </a>
+            <a href="">
+                <li>学习实践</li>
+            </a>
+            <a href="">
+                <li>县级融媒</li>
+            </a>
+            <a href="">
+                <li>新闻发布厅</li>
+            </a>
+            <a href="">
+                <li>强国征文</li>
+            </a>
+            <a href="">
+                <li>实播平台</li>
+            </a>
+            <a href="">
+                <li>身边的感动</li>
+            </a>
+
+        </ul>
+    </div>
+    
+    <!-- 这里显示分页 -->
+
+    <div id="Searchresult">分页初始化完成后这里的内容会被替换。</div>
+    <div id="hiddenresult" style="display:none;">
+        <!-- 列表元素 -->
+        <div class="result">
+            <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br><br>
+            <hr width="100%">
+            <br>
+            <a href="news.html">李克强对资源服务业发展大会作出重要批示</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+            <a href="#">黄坤明在国家社科基金项目评审工作会议上强调 </a><br><br>
+            <a href="news2.html">中组部召开抓党建促乡村振兴电视电话会议</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="news3.html">司法部部署下半年全面依法治国工作</a><br><br>
+            <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+            <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+            <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+            <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+            <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+            <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+    
+
+        </div>
+        <div class="result">
+                  <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        <div class="result">
+          
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        <div class="result">
+            
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        <div class="result">
+            
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        <div class="result">
+          
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        <div class="result">
+           
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+        </div>
+        
+            <div class="result">
+                <span style="color: firebrick;font-size: 26px; font-weight: 900;"> 重要新闻</span> &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br><br>
+                <hr width="100%">
+                <br>
+                <a href="#">李克强主持抗洪抢险救灾和防汛工作视频会</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;
+                <a href="#"> 截至7月26日24时新冠肺炎疫情最新情况</a><br><br>
+                <a href="#"> 汪洋：走出具有中国特色的应对老龄化之路</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">司法部部署下半年全面依法治国工作</a><br><br>
+                <a href="#">黄坤明:传承中华文化基因 焕发文化瑰宝风采</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">全国人大常委会开展畜牧法执法检查</a><br><br>
+                <a href="#">王晨李强出席推进基层立法联系点工作座谈会</a>&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">农业农村部:紧急调派专家指导农业生产恢复</a><br><br>
+                <a href="#">商务部发布我国首张跨境服务贸易负面清单</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">七部门：对保障送餐员正当权益提出要求</a><br><br>
+                <a href="#">国家医保局:确保将生三孩费用纳入生育保险</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#"> 国台办：一切谋“独”都逃不出失败下场</a><br><br>
+                <a href="#">最高法：为全面推进乡村振兴提供司法保障</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">外交部回应中美会谈:要求美方“四个停止”</a><br><br>
+                <a href="#">四部门联合部署全国城市地铁安全防范工作</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                <a href="#">国家发改委:极端天气即时启动最高等级响应</a><br>
+        
+    
+       
+</div>
+    </div>
+    <div id="Pagination" class="pagination"> </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.js"></script>
+    <script type="text/javascript">
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份 
+                "d+": this.getDate(),                    //日 
+                "h+": this.getHours(),                   //小时 
+                "m+": this.getMinutes(),                 //分 
+                "s+": this.getSeconds(),                 //秒 
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                "S": this.getMilliseconds()             //毫秒 
+            };
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                }
+            }
+            return fmt;
+        }
+        var time = document.getElementById("time");
+        var time1 = new Date().format("yyyy-MM-dd hh:mm:ss");
+        //window.alert(time1);
+        time.innerHTML = time1;
+
+        $(function () {
+
+            var initPagination = function () {
+                var num_entries = $("#hiddenresult div.result").length;
+                // 创建分页
+                $("#Pagination").pagination(num_entries, {
+                    num_edge_entries: 1, //边缘页数
+                    num_display_entries: 4, //主体页数
+                    callback: pageselectCallback,
+                    items_per_page: 1 //每页显示1项
+                });
+            }();
+
+            function pageselectCallback(page_index, jq) {
+                var new_content = $("#hiddenresult div.result:eq(" + page_index + ")").clone();
+                $("#Searchresult").empty().append(new_content); //装载对应分页的内容
+                return false;
+            }
+        });
+
+        function search(){
+         var s=$("#txt").val();
+        if(s=="李克强全国人力资源服务业发展大会"){
+          window.location.href="news.html"
+       }
+       if(s=="黄坤明国家社科基金项目评审工作会议")
+            window.location.href="news2.html"
+         
+      
+       if(s=="中组部召开抓党建促乡村振兴电视电话会议")
+          window.location.href="news3.html"
+
+      }
+       /*  $("#search").bind("click",function(){
+        $.ajax({
+				url: "",
+				type: 'GET',
+				dataType: 'json',
+                data:{
+                    search : $("#search").val(),
+                },
+				success: function(data) {
+					var srcHtml = '';
+					$.each(data.list, function(i, item) {
+						srcHtml += '<li>'+ item +'</li>';
+					})
+					$("#list").html(srcHtml)
+				}
+			});
+        }); */
+           /*  */
+    </script>
+
+</body>
+
+</html>

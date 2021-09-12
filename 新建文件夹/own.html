@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="">
+                    <span class="icon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href=" ">
+                    <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <span class="title">Modify</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                    <span class="title">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
+                    <span class="title">Help</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                    <span class="title">Setting</span>
+                </a>
+            </li>
+            <li>
+                <a href="change.html">
+                    <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <span class="title" onclick="changePwd">Password</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <span class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle" onclick="toggleMenu()"></div>
+    <div id="header">
+
+        <div id="inner">
+            <img src="img/downloadfile-1627312007445.jpeg" width="80px">
+            <span id="name">whisper
+            </span>
+            <div id="one">
+                <ul>
+                    <li>访问量 <br>&nbsp;&nbsp;&nbsp;&nbsp;0</li>
+                    <li>原创文章<br>&nbsp;&nbsp;&nbsp;&nbsp;0 </li>
+                    <li>作者排名<br>&nbsp;&nbsp;&nbsp;&nbsp;暂无</li>
+                    <li>粉丝数<br>&nbsp;&nbsp;&nbsp;&nbsp;0</li>
+                    <li>已关注<br>&nbsp;&nbsp;&nbsp;&nbsp;0</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="left">
+        <div id="time">
+            于2021年 8月2日 加入 啦啦新闻
+        </div>
+        <div id="leftx">
+            <h3 style="text-align: center;">
+                获得成就
+            </h3><br>
+            <hr><br>
+            <p><img src="img/点赞.png" width="20px">&nbsp;&nbsp;获得&nbsp;<b>0</b>&nbsp;次点赞</p><br>
+            <p><img src="img/评 论.png" width="20px">&nbsp;&nbsp;内容获得&nbsp;<b>0</b>&nbsp;次评论</p><br>
+            <p><img src="img/收 藏.png" width="20px">&nbsp;&nbsp;获得&nbsp;<b>0</b>&nbsp;次收藏</p><br>
+        </div>
+    </div>
+    <div id="right">
+        <ul>
+            <li>最近
+            </li>
+            <li> 文章·0</li>
+            <li> 资源·0</li>
+            <li> 问答·0</li>
+            <li> 帖子·0</li>
+            <li>收藏.0</li>
+        </ul>
+   <div id="hhh"><img src="img/屏幕截图 2021-07-29 192349.png" width="200px">
+  </div>   </div>
+    <script type="text/javascript">
+        function toggleMenu() {
+            let navigation = document.querySelector('.navigation');
+            let toggle = document.querySelector('.toggle');
+            navigation.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        var url = location.href; 
+        //alert(url);
+         var num =url.indexOf("?"); 
+         var str = url.substr(num+1);
+          $("#name").html(str);
+    </script>
+     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+
+#Searchresult {
+    margin-top: 10px;
+    width: 700px;
+    height: 450px;
+    position: relative;
+    top: 50px;
+    left: 320px;
+}
+#Pagination{
+    position: relative;
+    top: 60px;
+    left: 500px;
+}
+a {
+text-decoration: none;
+color: #000;
+}
+a:hover{
+    color: steelblue;
+}

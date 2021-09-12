@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+
+    <div id="mid">
+        <div id="ban"><br>
+            <div id="one">欢&nbsp;迎&nbsp;注&nbsp;册</div><br>
+            <div class="s1">
+                <input name="username" type="test" id="user" class="in" onBlur="checkUser()"
+                    placeholder="用户名(4-16位数字或字母且必须以字母开头)">
+                <span id="userText"></span>
+            </div>
+
+            <div class="s1">
+                <input type="password" name="password" id="pwd" class="in" onBlur="checkPwd()"
+                    placeholder="密码(4-10位字母和数字组成)">
+                <span id="pwdText"></span>
+            </div>
+            <div class="s1">
+                <input type="text" id="youxiang" class="in" onBlur="checkYx()" placeholder="请输入邮箱">
+                <span id="YxText"></span>
+            </div>
+            <div class="s1">
+              <!--   <input type="text" id="yanzheng" class="in" onBlur="checkYz()" placeholder="请输入验证码">
+                <input type="button" id="huoqu" value="获取验证码">
+                <span id="YzText"></span> -->
+                <canvas id="canvas" width="120" height="40"></canvas>
+                <input type="text" id="text"  placeholder="请输入验证码">
+               <!--  <input type="button" value="提交" id="bt"> -->
+            </div>
+            <div class="s1">
+                <input type="checkbox" class="check" checked="checked">
+                <span id="check">用户注册</span>
+            </div>
+            <div class="s1">
+                <input type="button" id="zhuce" value="注册" onclick="checkAll()">
+            </div>
+        </div>
+    </div>
+    <div id="two">已有帐号？<a href="logIn.html">请登录&nbsp;&nbsp;></a></div>
+
+    <script src="https://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/yan.js"></script>
+    <script>
+        /*用户名验证 */
+        function checkUser() {
+            var user = document.getElementById("user").value;
+            var userReg = /^[a-zA-Z][a-zA-Z0-9]{3,15}$/;
+            //alert(userReg.test(user));
+            var userText = document.getElementById("userText");
+            if (userReg.test(user)) {
+                userText.innerHTML = "格式正确!";
+                return true;
+            }
+            else {
+                userText.innerHTML = "格式不正确!";
+                return false;
+            }
+
+        }
+        /*密码验证*/
+        function checkPwd() {
+            var pwd = document.getElementById("pwd").value;
+            var pwdReg = /^[a-zA-Z0-9]{4,10}$/;
+            var pwdText = document.getElementById("pwdText");
+
+            if (pwdReg.test(pwd)) {
+                pwdText.innerHTML = "格式正确!";
+                return true;
+
+            }
+            else {
+                pwdText.innerHTML = "格式不正确!";
+                return false;
+            }
+
+        }
+        function checkYx() {
+
+            var email = document.getElementById("youxiang").value;
+            var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+
+            ismail = reg.test(email);
+
+            if (ismail) {
+                YxText.innerHTML = "格式正确!";
+                return true;
+
+            }
+            else {
+                YxText.innerHTML = "格式不正确!";
+                return false;
+            }
+        }
+
+        function doGetEmailCode() {
+            var email = $("#youxiang").val();//获取接收验证码的邮箱
+            var url = "getEmailCode?toEmail=" + email;//地址与邮箱拼接
+            $.get(url, function (result) {
+                console.log("result", result);
+            });
+        }
+        function doCompareEmailCode() {
+            var codeid = $("#codeid").val();
+            var url = "checkEmailCode?code=" + codeid;
+            $.get(url, function (result) {
+                console.log(result);
+            });
+        }
+
+         function checkAll(){
+           if( checkUser()==true && checkPwd()==true){
+            alert("注册成功");
+                        window.location.href ="logIn.html"
+           }
+         }
+       $("#zhuce").bind("click",function(){
+                $.ajax({
+                    url: "http://localhost:1120/Login11_war_exploded/register.jsp",//后端给的网址
+                    type: "POST",//POST,GET
+                    dataType: "json",//后端给的格式
+                    contentType: "application/json;charset=UTF-8",//统一，可以不写，但有时会交互失败
+                    data: {
+                        user: $("#user").val(),
+                        pwd: $("#pwd").val(),
+                        youxiang:$("#youxiang").val()
+                        
+                    },//传给后端的内容，无则空
+                    success: function (data) {
+                        //data是后端传来的json
+                        alert("注册成功");
+                        window.location.href ="logIn.html"
+                    },
+                    error: function () {
+                        //失败提醒
+                        var error = "查询数据失败！";
+                        console.log(error);
+                        //alert(error);
+                    }
+                });
+            
+       });
+
+
+    </script>
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+</body>
+
+</html>

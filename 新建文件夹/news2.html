@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>板块页面</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="pic.css">
+    <style>
+        #header {
+            background-image: url(img/2021071671banner.jpg);
+            width: 100%;
+            background-size: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        body {
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #news {
+            padding: 80px;
+            font-size: 15px;
+            margin: 10px 120px;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        #last {
+            width: 100%;
+            margin-top: 30px;
+           
+            padding: 10px;
+            background-color: ghostwhite;
+            font-size: 14px;
+        }
+        #bottom{
+            margin-left: 220px;
+        }
+        a{
+            text-decoration: none;
+        }
+        #right{
+            margin-left: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="news">
+        <div id="head">
+            学习强国>>重要新闻<br><br><br>
+            <h1> 黄坤明在国家社科基金项目评审工作会议上强调 立足伟大
+            实践 推动创新创造 谱写哲学社会科学繁荣发展新篇章</h1><br>
+          <!--   <h3> 李克强对第一届全国人力资源服务业发展大会作出重要批示强调</h3><br>
+
+            <h3>进一步提高人力资源服务水平 更好促进就业扩大和优化人力资源配置</h3><br>
+
+            <h3>胡春华发表视频致辞</h3> -->
+
+        </div><br><br><br>
+        <div id="content"> 
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 新华社北京7月29日电 2021年度国家社科基金项目评审工作会议28日在京召开。中共中央政治局委员、中宣部部长黄坤明出席会议并讲话，强调要深入学习贯彻习近平总书记“七一”重要讲话精神，牢牢把握构建中国特色哲学社会科学的战略任务，立足伟大实践，推动创新创造，在新的征程上谱写哲学社会科学繁荣发展新篇章。
+            </p><br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 黄坤明指出，我们党带领人民不懈奋斗的一百年，也是高举真理火炬、引领哲学社会科学开拓创新的一百年，以马克思主义为指导是中国特色哲学社会科学的鲜明底色。在全面建设社会主义现代化国家的历史进程中，要更加自觉地以习近平新时代中国特色社会主义思想为统领，坚持推进马克思主义中国化时代化，全面提升学科体系、学术体系、话语体系建设水平，以高度的理论自信、学术自信构建中国自己的学术理论。
+            </p><br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 黄坤明强调，要紧紧围绕党和国家工作大局，加强战略研究、对策研究，为立足新发展阶段、贯彻新发展理念、构建新发展格局提供学理支撑。要坚定文化自信，传承中华优秀传统文化，赓续历史文脉、弘扬民族精神。要加强对哲学社会科学工作的领导，强化学术发展的统筹和规划，深入实施重大学术工程，深化科研管理体制改革，营造富有活力、有利于出成果出人才的体制机制环境。
+            
+            </p><br>
+        </div>
+    </div>
+    <div id="bottom">
+        <span id="left"><a href="news.html"> <--上一篇 </a></span>
+       <span id="right"> <a href="news3.html"> 下一篇--> </a></span>
+    </div>
+    <div id="last">
+        <p style="text-align: center;">拉拉日报社概况 | 关于拉拉网 | 报网动态 | 联系我们 | 法律声明 | 拉拉网邮箱 | 网站地图<br>
+
+            地址：北京市东城区珠市口东大街5号 邮编：100062 违法信息举报 违法和不良信息举报电话：010-67078755<br>
+
+            广播电视节目制作经营许可证181号 信息网络传播视听节目许可证号0110486 京卫网审[2012]第0051号 （京）-经营性-2016-0011<br>
+
+            京网文（2020）0029-015号 京ICP证101021号 京公网安110402440033号 京ICP备09109312号-1 中国互联网视听节目服务自律公约 拉拉网版权所有<br>
+        </p>
+    </div>
+    <script>
+          $.ajax({
+                //请求方式
+                type: 'get',
+                //发送请求的地址
+                //我这里的地址是不需要传数据的，所以没有拼接参数
+                url: '',
+
+                //服务器返回的数据类型
+                dataType: 'json',
+
+                //请求成功的处理
+                success: function (data) {
+                    console.log(data)
+                    //获取需要的数据
+                    var group = data.content;
+
+                    //拼接字符串
+                    var str = '';
+                    //对数据做遍历，拼接到页面显示
+                    for (var i = 0; i < group.length; i++) {
+/*                         str += 
+                            '<td class="item-title">' + group[i].id + '</td>' +
+                            '<td class="item-content">' + group[i].name + '</td>' +
+                            '<td class="item-content">' + group[i].usernmae + '</td>' 
+                            */
+                           
+                    }
+                    //放入页面的容器显示
+                    $('#container').html(str);
+
+                },
+                //请求失败的处理
+                error: function (jqXHR) {
+                    console.log(jqXHR);
+                }
+            });
+    </script>
+    
+</body>
+
+</html>

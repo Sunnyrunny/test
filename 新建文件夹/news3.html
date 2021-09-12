@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>板块页面</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="pic.css">
+    <style>
+        #header {
+            background-image: url(img/2021071671banner.jpg);
+            width: 100%;
+            background-size: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        body {
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #news {
+            padding: 80px;
+            font-size: 15px;
+            margin: 10px 120px;
+        }
+
+        h1,
+        h3 {
+            text-align: center;
+        }
+
+        #last {
+            width: 100%;
+            margin-top: 30px;
+           
+            padding: 10px;
+            background-color: ghostwhite;
+            font-size: 14px;
+        }
+        #bottom{
+            margin-left: 220px;
+        }
+        a{
+            text-decoration: none;
+        }
+        #right{
+            margin-left: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="news">
+        <div id="head">
+            学习强国>>重要新闻<br><br><br>
+            <h1>中组部召开抓党建促乡村振兴电视电话会议 陈希出席并讲话</h1><br>
+          <!--   <h3> 李克强对第一届全国人力资源服务业发展大会作出重要批示强调</h3><br>
+
+            <h3>进一步提高人力资源服务水平 更好促进就业扩大和优化人力资源配置</h3><br>
+
+            <h3>胡春华发表视频致辞</h3> -->
+
+        </div><br><br><br>
+        <div id="content"> 
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 新华社北京7月29日电 中央组织部29日在京召开抓党建促乡村振兴电视电话会议，中共中央政治局委员、中组部部长陈希出席会议并讲话，强调各级组织部门要深入学习贯彻习近平总书记“七一”重要讲话精神，贯彻落实党中央关于全面推进乡村振兴的决策部署，以更高的标准、更大的力度、更实的举措抓党建促乡村振兴，在巩固拓展脱贫攻坚成果、全面推进乡村振兴、加快农业农村现代化中展现新担当新作为。
+            </p><br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 陈希强调，要深化习近平新时代中国特色社会主义思想学习教育，大力开展乡村振兴主题培训，提升党员干部群众的思想认识和实践本领；按照政治过硬、本领过硬、作风过硬和懂农业、爱农村、爱农民的要求，着力建强县乡领导班子和干部队伍，激励广大干部在乡村振兴中建功立业；持续加强村党组织带头人队伍建设，派强用好驻村第一书记和工作队，充分发挥基层党组织战斗堡垒作用和共产党员先锋模范作用；坚持招才引智和培育本土人才有机结合，积极引导各类人才投身乡村振兴；加快构建党组织领导的乡村治理体系，把党的政治优势、组织优势转化为乡村治理效能。
+            </p><br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp; 陈希强调，要总结运用抓党建促脱贫攻坚的经验，大力弘扬脱贫攻坚精神，推动五级书记抓乡村振兴，坚持求真务实、真抓实干，以钉钉子精神抓好各项任务落实。
+            
+            </p><br>
+        </div>
+
+
+    </div>
+    <div id="bottom">
+        <span id="left"><a href="news2.html"> <--上一篇 </a></span>
+       <span id="right"> <a href="news.html"> 下一篇--> </a></span>
+    </div>
+    <div id="last">
+        <p style="text-align: center;">拉拉日报社概况 | 关于拉拉网 | 报网动态 | 联系我们 | 法律声明 | 拉拉网邮箱 | 网站地图<br>
+
+            地址：北京市东城区珠市口东大街5号 邮编：100062 违法信息举报 违法和不良信息举报电话：010-67078755<br>
+
+            广播电视节目制作经营许可证181号 信息网络传播视听节目许可证号0110486 京卫网审[2012]第0051号 （京）-经营性-2016-0011<br>
+
+            京网文（2020）0029-015号 京ICP证101021号 京公网安110402440033号 京ICP备09109312号-1 中国互联网视听节目服务自律公约 拉拉网版权所有<br>
+        </p>
+    </div>
+    <script>
+          $.ajax({
+                //请求方式
+                type: 'get',
+                //发送请求的地址
+                //我这里的地址是不需要传数据的，所以没有拼接参数
+                url: '',
+
+                //服务器返回的数据类型
+                dataType: 'json',
+
+                //请求成功的处理
+                success: function (data) {
+                    console.log(data)
+                    //获取需要的数据
+                    var group = data.content;
+
+                    //拼接字符串
+                    var str = '';
+                    //对数据做遍历，拼接到页面显示
+                    for (var i = 0; i < group.length; i++) {
+/*                         str += 
+                            '<td class="item-title">' + group[i].id + '</td>' +
+                            '<td class="item-content">' + group[i].name + '</td>' +
+                            '<td class="item-content">' + group[i].usernmae + '</td>' 
+                            */
+                           
+                    }
+                    //放入页面的容器显示
+                    $('#container').html(str);
+
+                },
+                //请求失败的处理
+                error: function (jqXHR) {
+                    console.log(jqXHR);
+                }
+            });
+    </script>
+    
+</body>
+
+</html>
